@@ -5,6 +5,7 @@ class Atcore < Formula
   sha256 "ffd12455c9b8db853e455a437d6c6b601e0003c6732bbc6c2828032e004530e2"
 
   head "git://anongit.kde.org/atcore.git"
+  option "with-gui", "Build atcore-gui (HEAD ONLY)"
 
   depends_on "KDE-mac/kde/kf5-extra-cmake-modules" => :build
   depends_on "cmake" => :build
@@ -12,8 +13,10 @@ class Atcore < Formula
 
   def install
     args = std_cmake_args
-    args << "-DBUILD_GUI=ON"
     args << "-DKDE_INSTALL_PLUGINDIR=lib/qt5/plugins"
+    if built.with? "gui"
+        args << "-DBUILD_GUI=ON"
+    end
 
     mkdir "build" do
       system "cmake", "..", *args
