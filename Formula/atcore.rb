@@ -6,7 +6,7 @@ class Atcore < Formula
 
   head "git://anongit.kde.org/atcore.git"
   option "with-gui", "Build atcore-gui (HEAD ONLY)"
-
+  depends_on "gui" => :optional
   depends_on "KDE-mac/kde/kf5-extra-cmake-modules" => :build
   depends_on "cmake" => :build
   depends_on "qt"
