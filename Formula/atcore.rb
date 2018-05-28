@@ -32,10 +32,10 @@ end
 
 __END__
 
-diff --git a/src/atcore.cpp b/src/atcore.cpp
+diff --git a/src/core/atcore.cpp b/src/core/atcore.cpp
 index fe4ea2c..8e60577 100644
---- a/src/atcore.cpp
-+++ b/src/atcore.cpp
+--- a/src/core/atcore.cpp
++++ b/src/core/atcore.cpp
 @@ -84,8 +84,15 @@ AtCore::AtCore(QObject *parent) :
      //Attempt to find our plugins
      //For Windows and Mac we always look in plugins folder of the program using atcore.
@@ -55,10 +55,10 @@ index fe4ea2c..8e60577 100644
      for (const auto &path : AtCoreDirectories::pluginDir) {
          qCDebug(ATCORE_PLUGIN) << "Lookin for plugins in " << path;
 diff --git a/src/plugins/CMakeLists.txt b/src/plugins/CMakeLists.txt
-index 7d1d68e..423bb35 100644
+index ea215bf..a9446c6 100644
 --- a/src/plugins/CMakeLists.txt
 +++ b/src/plugins/CMakeLists.txt
-@@ -29,7 +29,7 @@ set(SmoothiePlugin_SRCS smoothieplugin.cpp)
+@@ -27,7 +27,7 @@ set(SmoothiePlugin_SRCS smoothieplugin.cpp)
  add_library(smoothie SHARED ${SmoothiePlugin_SRCS})
  target_link_libraries(smoothie Qt5::Core AtCore::AtCore)
  
@@ -67,12 +67,12 @@ index 7d1d68e..423bb35 100644
      install(
      TARGETS
          repetier
-@@ -44,7 +44,7 @@ if(WIN32 OR APPLE)
+@@ -42,7 +42,7 @@ if(WIN32 OR APPLE)
      )
  endif()
  
--if(UNIX AND NOT APPLE) 
-+if (UNIX)
+-if(UNIX AND NOT APPLE)
++if(UNIX)
      install(
      TARGETS
          repetier
